@@ -32,12 +32,7 @@ class GamesController < ApplicationController
   private
 
   def valid_letters?(word, letters)
-    word.chars.each do |letter|
-      if !letters.include?(letter)
-        return false
-      end
-    end
-    return true
+    word.chars.all? { |letter| word.count(letter) <= letters.count(letter) }
   end
 
   def is_english?(word)
